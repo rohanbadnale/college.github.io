@@ -1,77 +1,66 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>College Management System</title>
+    <title>College Management</title>
     <style>
-        body {
-            font-family: Arial;
-            margin: 0;
-            background: #0f172a;
-            color: white;
-        }
-        header {
-            background: #1e293b;
-            padding: 20px;
-            text-align: center;
-        }
-        nav {
-            text-align: center;
-            background: #020617;
-            padding: 10px;
-        }
-        nav a {
-            color: white;
-            margin: 10px;
-            text-decoration: none;
-        }
-        section {
-            padding: 20px;
-        }
-        .card {
-            background: #1e293b;
-            padding: 15px;
-            margin: 10px 0;
-            border-radius: 10px;
-        }
+        body { font-family: Arial; background:#0f172a; color:white; }
+        h1 { text-align:center; }
+        .box { background:#1e293b; padding:15px; margin:20px; border-radius:10px; }
+        input, button { padding:10px; margin:5px; }
     </style>
 </head>
 
 <body>
 
-<header>
-    <h1>College Management System 🎓</h1>
-</header>
+<h1>College Management System 🎓</h1>
 
-<nav>
-    <a href="#">Home</a>
-    <a href="#">Students</a>
-    <a href="#">Teachers</a>
-    <a href="#">Contact</a>
-</nav>
+<div class="box">
+    <h2>Add Student</h2>
+    <input type="text" id="name" placeholder="Student Name">
+    <button onclick="addStudent()">Add</button>
+</div>
 
-<section>
-    <h2>Welcome</h2>
-    <div class="card">
-        <p>This system helps manage college data easily.</p>
-    </div>
-</section>
+<div class="box">
+    <h2>Student List</h2>
+    <ul id="list"></ul>
+</div>
 
-<section>
-    <h2>Students</h2>
-    <div class="card">
-        <p>Student 1</p>
-        <p>Student 2</p>
-    </div>
-</section>
+<script>
 
-<section>
-    <h2>Teachers</h2>
-    <div class="card">
-        <p>Teacher 1</p>
-        <p>Teacher 2</p>
-    </div>
-</section>
+// load saved data
+let students = JSON.parse(localStorage.getItem("students")) || [];
+
+function showStudents() {
+    let list = document.getElementById("list");
+    list.innerHTML = "";
+
+    students.forEach(s => {
+        let li = document.createElement("li");
+        li.textContent = s;
+        list.appendChild(li);
+    });
+}
+
+// add student
+function addStudent() {
+    let name = document.getElementById("name").value;
+
+    if(name === "") {
+        alert("Enter name ❌");
+        return;
+    }
+
+    students.push(name);
+    localStorage.setItem("students", JSON.stringify(students));
+
+    document.getElementById("name").value = "";
+    showStudents();
+}
+
+// show on load
+showStudents();
+
+</script>
 
 </body>
 </html>
-<a href="login.html">Login</a>
