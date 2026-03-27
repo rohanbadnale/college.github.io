@@ -2,47 +2,25 @@
 <html>
 <head>
     <title>Login</title>
-    <style>
-        body {
-            font-family: Arial;
-            background: #0f172a;
-            color: white;
-            text-align: center;
-            padding-top: 100px;
-        }
-        input {
-            padding: 10px;
-            margin: 10px;
-            width: 200px;
-        }
-        button {
-            padding: 10px;
-            background: green;
-            color: white;
-            border: none;
-        }
-    </style>
 </head>
+<body style="text-align:center; margin-top:100px;">
 
-<body>
+<h2>College Login 🔐</h2>
 
-<h2>Login Page 🔐</h2>
-
-<input type="text" id="username" placeholder="Username"><br>
-<input type="password" id="password" placeholder="Password"><br>
+<input type="text" id="user" placeholder="Username"><br><br>
+<input type="password" id="pass" placeholder="Password"><br><br>
 
 <button onclick="login()">Login</button>
 
 <script>
 function login() {
-    let user = document.getElementById("username").value;
-    let pass = document.getElementById("password").value;
+    let u = document.getElementById("user").value;
+    let p = document.getElementById("pass").value;
 
-    if(user === "admin" && pass === "1234") {
-        alert("Login Successful ✅");
+    if(u === "admin" && p === "1234") {
         window.location.href = "index.html";
     } else {
-        alert("Wrong Username or Password ❌");
+        alert("Wrong login ❌");
     }
 }
 </script>
